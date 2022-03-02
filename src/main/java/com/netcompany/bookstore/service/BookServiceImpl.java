@@ -3,6 +3,7 @@ package com.netcompany.bookstore.service;
 import com.netcompany.bookstore.dto.BookDto;
 import com.netcompany.bookstore.mapper.BookMapper;
 import com.netcompany.bookstore.model.Book;
+import com.netcompany.bookstore.model.Genre;
 import com.netcompany.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,8 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public List<BookDto> findByGenre(String genre){
-        return bookRepository.findAll().stream().filter(book -> book.getGenre().equals(genre))
+        Genre test=Enum.valueOf(Genre.class,genre);
+        return bookRepository.findAll().stream().filter(book -> book.getGenre().equals(test))
                 .map(BookMapper::mapToDto)
                 .collect(Collectors.toList());
 

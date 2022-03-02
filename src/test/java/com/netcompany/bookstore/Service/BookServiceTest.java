@@ -40,4 +40,22 @@ public class BookServiceTest {
         assertEquals(result.get(0),newBook);
 
     }
+    @Test
+    void findAllByGenre(){
+        Book newBook1=new Book(13L,"book1",Genre.SCIFI);
+        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE);
+        Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook1,newBook2));
+        List<BookDto> result = bookService.findByGenre("SCIFI");
+        assertEquals(result.size(),1);
+        assertEquals(result.get(0).getName(),"book1");
+    }
+    @Test
+    void findAllByGenre_lowercase(){
+        Book newBook1=new Book(13L,"book1",Genre.SCIFI);
+        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE);
+        Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook1,newBook2));
+        List<BookDto> result = bookService.findByGenre("scifi");
+        assertEquals(result.size(),1);
+        assertEquals(result.get(0).getName(),"book1");
+    }
 }
