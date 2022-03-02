@@ -10,4 +10,7 @@ public interface BookService {
     List<BookDto> findAll();
 
     void saveNewData();
+
+    List<BookDto> findByGenre(String genre);
+
 }

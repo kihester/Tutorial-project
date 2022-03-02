@@ -25,6 +25,13 @@ public class BookServiceImpl implements BookService {
                 .map(BookMapper::mapToDto)
                 .collect(Collectors.toList());
     }
+    @Override
+    public List<BookDto> findByGenre(String genre){
+        return bookRepository.findAll().stream().filter(book -> book.getGenre().equals(genre))
+                .map(BookMapper::mapToDto)
+                .collect(Collectors.toList());
+
+    }
 
     @Override
     public void saveNewData() {

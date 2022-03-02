@@ -3,6 +3,7 @@ package com.netcompany.bookstore.Service;
 
 import com.netcompany.bookstore.dto.BookDto;
 import com.netcompany.bookstore.model.Book;
+import com.netcompany.bookstore.model.Genre;
 import com.netcompany.bookstore.repository.BookRepository;
 import com.netcompany.bookstore.service.BookService;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class BookServiceTest {
 
     @Test
     void findAllBookReturns() {
-        Book newBook = new Book(12L,"HarryPotter");
+        Book newBook = new Book(12L,"HarryPotter", Genre.SCIFI);
         Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook));
 
         List<BookDto> result = bookService.findAll();
