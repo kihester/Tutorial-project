@@ -11,7 +11,7 @@ public class BookMapper {
 
 
     public static BookDto mapToDto(Book book) {
-        return new BookDto(book.getName(), book.getAuthor(), book.getGenre().getText());
+        return new BookDto(book.getName(), book.getAuthor(), book.getGenre().getDisplayName());
     }
 
     public Book mapToModel(BookDto book) {

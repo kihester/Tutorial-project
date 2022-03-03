@@ -7,6 +7,7 @@ import com.netcompany.bookstore.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,7 +33,7 @@ public class BookController {
     }
 
     @PostMapping("/save")
-    public BookDto addNewBook(@RequestBody BookDto book) {
+    public BookDto addNewBook(@Valid @RequestBody BookDto book) {
         return bookService.addNewBook(book);
     }
 
