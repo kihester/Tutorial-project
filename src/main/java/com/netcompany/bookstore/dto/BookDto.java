@@ -15,6 +15,11 @@ public class BookDto {
 
     @NotBlank(message = "Cannot be Null")
     private String name;
-    private String author;
+    private String authorFirstName;
+    private String authorLastName;
+    private int authorAge;
     private String genre;
+
+
+
 }

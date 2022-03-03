@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity
 @Table(name="book")
@@ -24,11 +25,12 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    @ManyToOne()
+    private Author author;
 
-    @Column
-    private String author;
 
-    public Book(String name, Genre genre, String author) {
+
+    public Book(String name, Genre genre, Author author) {
         this.name = name;
         this.genre = genre;
         this.author = author;

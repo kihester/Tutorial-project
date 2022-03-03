@@ -2,6 +2,7 @@ package com.netcompany.bookstore.Service;
 
 
 import com.netcompany.bookstore.dto.BookDto;
+import com.netcompany.bookstore.model.Author;
 import com.netcompany.bookstore.model.Book;
 import com.netcompany.bookstore.model.Genre;
 import com.netcompany.bookstore.repository.BookRepository;
@@ -30,7 +31,9 @@ public class BookServiceTest {
 
     @Test
     void findAllBookReturns() {
-        Book newBook = new Book(12L,"HarryPotter", Genre.SCIFI, "J.K Rowling");
+
+        Author author = new Author("JK", "Rowling", 43);
+        Book newBook = new Book(12L,"HarryPotter", Genre.SCIFI, author);
         Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook));
 
         List<BookDto> result = bookService.findAll();
@@ -41,8 +44,10 @@ public class BookServiceTest {
     }
     @Test
     void findAllByGenre(){
-        Book newBook1=new Book(13L,"book1",Genre.SCIFI, "Author1");
-        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE, "Author2");
+
+        Author author = new Author("JK", "Rowling", 43);
+        Book newBook1=new Book(13L,"book1",Genre.SCIFI, author);
+        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE, author);
         Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook1,newBook2));
         List<BookDto> result = bookService.findByGenre("SCIFI");
         assertEquals(result.size(),1);
@@ -50,8 +55,10 @@ public class BookServiceTest {
     }
     @Test
     void findAllByGenre_lowercase(){
-        Book newBook1=new Book(13L,"book1",Genre.SCIFI, "Author1");
-        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE, "Author2");
+
+        Author author = new Author("JK", "Rowling", 43);
+        Book newBook1=new Book(13L,"book1",Genre.SCIFI, author);
+        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE, author);
         Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook1,newBook2));
         List<BookDto> result = bookService.findByGenre("scifi");
         assertEquals(result.size(),1);
@@ -59,8 +66,9 @@ public class BookServiceTest {
     }
     @Test
     void findAllByGenre_notInList(){
-        Book newBook1=new Book(13L,"book1",Genre.SCIFI, "Author1");
-        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE, "Author2");
+        Author author = new Author("JK", "Rowling", 43);
+        Book newBook1=new Book(13L,"book1",Genre.SCIFI, author);
+        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE, author);
         Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook1,newBook2));
         List<BookDto> result = bookService.findByGenre("FANTASY");
         assertTrue(result.isEmpty());

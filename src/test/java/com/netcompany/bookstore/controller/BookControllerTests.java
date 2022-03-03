@@ -30,7 +30,7 @@ public class BookControllerTests {
     @Test
     public void verifyListofBooks() throws Exception {
 
-        Mockito.when(bookService.findAll()).thenReturn(asList(new BookDto("Jimmy", "Author","Action")));
+        Mockito.when(bookService.findAll()).thenReturn(asList(new BookDto("Jimmy", "JK","Rowling",9,"Scifi")));
 
         mockMvc.perform(get("/api/books")).andExpect(status().isOk());
 
