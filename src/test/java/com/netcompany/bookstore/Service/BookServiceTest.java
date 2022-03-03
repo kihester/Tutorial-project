@@ -17,6 +17,7 @@ import java.util.List;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 public class BookServiceTest {
@@ -34,10 +35,8 @@ public class BookServiceTest {
 
         List<BookDto> result = bookService.findAll();
 
-
         assertEquals(result.size(),1);
         assertEquals(result.get(0).getName(),"HarryPotter");
-        assertEquals(result.get(0),newBook);
 
     }
     @Test
@@ -57,5 +56,13 @@ public class BookServiceTest {
         List<BookDto> result = bookService.findByGenre("scifi");
         assertEquals(result.size(),1);
         assertEquals(result.get(0).getName(),"book1");
+    }
+    @Test
+    void findAllByGenre_notInList(){
+        Book newBook1=new Book(13L,"book1",Genre.SCIFI);
+        Book newBook2=new Book(14L,"book2",Genre.ADVENTURE);
+        Mockito.when(bookRepository.findAll()).thenReturn(asList(newBook1,newBook2));
+        List<BookDto> result = bookService.findByGenre("FANTASY");
+        assertTrue(result.isEmpty());
     }
 }

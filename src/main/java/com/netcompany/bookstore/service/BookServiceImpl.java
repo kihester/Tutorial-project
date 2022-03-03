@@ -8,8 +8,13 @@ import com.netcompany.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.netcompany.bookstore.model.Genre.fromText;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -28,11 +33,13 @@ public class BookServiceImpl implements BookService {
     }
     @Override
     public List<BookDto> findByGenre(String genre){
-        Genre test=Enum.valueOf(Genre.class,genre);
-        return bookRepository.findAll().stream().filter(book -> book.getGenre().equals(test))
-                .map(BookMapper::mapToDto)
-                .collect(Collectors.toList());
-
+        Optional<Genre> optionalGenre= fromText(genre);
+        if (optionalGenre.isPresent()){
+            return bookRepository.findAll().stream().filter(book -> book.getGenre().equals(optionalGenre.get()))
+                    .map(BookMapper::mapToDto)
+                    .collect(Collectors.toList());
+        }
+        return Collections.emptyList();
     }
 
     @Override
