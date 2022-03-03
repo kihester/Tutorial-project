@@ -1,17 +1,17 @@
-INSERT INTO book (name,genre )
-VALUES ('The philosophers stone','SCIFI');
+INSERT INTO book (name,genre ,author )
+VALUES ('The philosophers stone','SCIFI', 'J.K Rowling');
 
-INSERT INTO book (name,genre)
-VALUES ('The chamber of secrets','SCIFI');
+INSERT INTO book (name,genre ,author)
+VALUES ('The chamber of secrets','SCIFI', 'J.K Rowling');
 
-INSERT INTO book (name,genre )
-VALUES ('Chronicles of narnia','ADVENTURE');
+INSERT INTO book (name,genre ,author )
+VALUES ('Chronicles of narnia','ADVENTURE', 'J.K Rowling');
 
-INSERT INTO book (name,genre)
-VALUES ('Hobbit','FICTION');
+INSERT INTO book (name,genre ,author)
+VALUES ('Hobbit','FICTION', 'Author1');
 
-INSERT INTO book (name,genre )
-VALUES ('Game of thrones','FICTION');
+INSERT INTO book (name,genre ,author )
+VALUES ('Game of thrones','FICTION', 'Author2');
 
 
 

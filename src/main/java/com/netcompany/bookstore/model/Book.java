@@ -22,4 +22,16 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+
+    @Column
+    private String author;
+
+    public Book(String name, Genre genre, String author) {
+        this.name = name;
+        this.genre = genre;
+        this.author = author;
+    }
+
 }
+

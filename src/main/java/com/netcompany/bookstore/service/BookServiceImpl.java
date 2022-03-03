@@ -8,10 +8,7 @@ import com.netcompany.bookstore.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.netcompany.bookstore.model.Genre.fromText;
@@ -40,6 +37,25 @@ public class BookServiceImpl implements BookService {
                     .collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public List<BookDto> findByAuthor(String author){
+        List<BookDto> booksFoundDto = new ArrayList<>();
+
+        List<Book> booksFound = bookRepository.findByAuthor(author);
+
+        for (Book b : booksFound) {
+            booksFoundDto.add(bookMapper.mapToDto(b));
+        }
+
+        return booksFoundDto;
+    }
+
+    @Override
+    public BookDto addNewBook(BookDto book) {
+        Book savedBook = bookRepository.save(bookMapper.mapToModel(book));
+        return bookMapper.mapToDto(savedBook);
     }
 
     @Override

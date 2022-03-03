@@ -12,4 +12,6 @@ import lombok.Setter;
 public class BookDto {
 
     private String name;
+    private String author;
+    private String genre;
 }

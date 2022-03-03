@@ -13,4 +13,7 @@ public interface BookService {
 
     List<BookDto> findByGenre(String genre);
 
+    List<BookDto> findByAuthor(String author);
+
+    BookDto addNewBook(BookDto book);
 }
