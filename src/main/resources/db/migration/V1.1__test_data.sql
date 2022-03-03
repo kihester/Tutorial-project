@@ -1,17 +1,24 @@
-INSERT INTO book (name,genre ,author )
-VALUES ('The philosophers stone','SCIFI', 'J.K Rowling');
+INSERT INTO author (id, firstName, lastName, age)
+VALUES (1, 'J.K', 'Rowling', 50);
 
-INSERT INTO book (name,genre ,author)
-VALUES ('The chamber of secrets','SCIFI', 'J.K Rowling');
+INSERT INTO author (id, firstName, lastName, age)
+VALUES (2, 'John', 'Doe', 20);
 
-INSERT INTO book (name,genre ,author )
-VALUES ('Chronicles of narnia','ADVENTURE', 'J.K Rowling');
 
-INSERT INTO book (name,genre ,author)
-VALUES ('Hobbit','FICTION', 'Author1');
+INSERT INTO book (name,genre ,author_id )
+VALUES ('The philosophers stone','SCIFI', 1);
 
-INSERT INTO book (name,genre ,author )
-VALUES ('Game of thrones','FICTION', 'Author2');
+INSERT INTO book (name,genre ,author_id)
+VALUES ('The chamber of secrets','SCIFI', 1);
+
+INSERT INTO book (name,genre ,author_id )
+VALUES ('Chronicles of narnia','ADVENTURE', 1);
+
+INSERT INTO book (name,genre ,author_id)
+VALUES ('Hobbit','FICTION', 2);
+
+INSERT INTO book (name,genre ,author_id )
+VALUES ('Game of thrones','FICTION', 2);
 
 
 
