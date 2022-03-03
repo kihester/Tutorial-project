@@ -15,4 +15,5 @@ public interface BookService {
 
     List<BookDto> findByAuthor(String author);
 
+    BookDto addNewBook(BookDto book);
 }
