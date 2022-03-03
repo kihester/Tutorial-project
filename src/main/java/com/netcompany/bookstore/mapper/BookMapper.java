@@ -18,4 +18,8 @@ public class BookMapper {
     public Book mapToModel(BookDto book) {
         return new Book(book.getName(),fromText(book.getGenre()).get(), new Author(book.getAuthorFirstName(), book.getAuthorLastName(), book.getAuthorAge()));
     }
+
+    public Book mapToModel(BookDto book, Author author) {
+        return new Book(book.getName(),fromText(book.getGenre()).get(), author);
+    }
 }

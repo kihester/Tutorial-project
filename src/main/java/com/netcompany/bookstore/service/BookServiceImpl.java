@@ -2,9 +2,11 @@ package com.netcompany.bookstore.service;
 
 import com.netcompany.bookstore.dto.BookDto;
 import com.netcompany.bookstore.mapper.BookMapper;
+import com.netcompany.bookstore.model.Author;
 import com.netcompany.bookstore.model.Book;
 import com.netcompany.bookstore.model.Genre;
 import com.netcompany.bookstore.repository.BookRepository;
+import com.netcompany.bookstore.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private AuthorRepository authorRepository;
 
     @Autowired
     private BookMapper bookMapper;
@@ -54,8 +59,17 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto addNewBook(BookDto book) {
-        Book savedBook = bookRepository.save(bookMapper.mapToModel(book));
 
+        Optional<Author> optionalAuthor = authorRepository.findAuthorByFirstNameAndLastName(book.getAuthorFirstName(), book.getAuthorLastName());
+
+        if(optionalAuthor.isPresent()){
+            Book savedBook = bookRepository.save(bookMapper.mapToModel(book, optionalAuthor.get()));
+            return bookMapper.mapToDto(savedBook);
+        }
+
+        Author newAuthor = authorRepository.save(new Author(book.getAuthorFirstName(), book.getAuthorLastName(), book.getAuthorAge()));
+
+        Book savedBook = bookRepository.save(bookMapper.mapToModel(book, newAuthor));
         return bookMapper.mapToDto(savedBook);
     }
 
