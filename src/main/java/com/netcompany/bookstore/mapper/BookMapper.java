@@ -11,10 +11,10 @@ public class BookMapper {
 
 
     public static BookDto mapToDto(Book book) {
-        return new BookDto(book.getName(), book.getAuthor(), book.getGenre().getText());
+        return new BookDto(book.getName(), book.getGenre().getText(), book.getAuthor());
     }
 
     public Book mapToModel(BookDto book) {
-        return new Book(book.getName(),fromText(book.getGenre()).get(), book.getAuthor());
+        return new Book(book.getName(), fromText(book.getGenre()).get(), book.getAuthor());
     }
 }

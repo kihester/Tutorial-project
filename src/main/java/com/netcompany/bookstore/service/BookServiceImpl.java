@@ -41,15 +41,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookDto> findByAuthor(String author){
-        List<BookDto> booksFoundDto = new ArrayList<>();
 
-        List<Book> booksFound = bookRepository.findByAuthor(author);
+        return bookRepository.findAll().stream().filter(book -> book.getAuthor().equalsIgnoreCase(author))
+                .map(BookMapper::mapToDto)
+                .collect(Collectors.toList());
 
-        for (Book b : booksFound) {
-            booksFoundDto.add(bookMapper.mapToDto(b));
-        }
-
-        return booksFoundDto;
     }
 
     @Override
