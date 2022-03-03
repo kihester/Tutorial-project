@@ -29,6 +29,11 @@ public class BookController {
         return bookService.findByGenre(genre);
     }
 
+    @GetMapping("/author/{author}")
+    public List<BookDto> findByAuthor(@PathVariable("author")String author){
+        return bookService.findByAuthor(author);
+    }
+
     @GetMapping("/save")
     public String saveNewData() {
         bookService.saveNewData();

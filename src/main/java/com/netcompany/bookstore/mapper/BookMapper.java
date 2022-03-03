@@ -9,7 +9,7 @@ public class BookMapper {
 
 
     public static BookDto mapToDto(Book book) {
-        return new BookDto(book.getName());
+        return new BookDto(book.getName(), book.getAuthor());
     }
 
 }

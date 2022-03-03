@@ -23,4 +23,7 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    @Column
+    private String author;
+
 }
