@@ -22,5 +22,4 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     private Genre genre;
-
 }

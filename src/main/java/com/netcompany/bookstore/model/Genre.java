@@ -8,19 +8,19 @@ public enum Genre {
     SCIFI("Scifi"),
     FICTION("Fiction");
 
-    private String text;
+    private String displayName;
 
-    Genre(String text) {
-        this.text = text;
+    Genre(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getText() {
-        return this.text;
+    public String getDisplayName() {
+        return this.displayName;
     }
 
     public static Optional<Genre> fromText(String text) {
         return Arrays.stream(values())
-                .filter(bl -> bl.text.equalsIgnoreCase(text))
+                .filter(bl -> bl.displayName.equalsIgnoreCase(text))
                 .findFirst();
     }
 
