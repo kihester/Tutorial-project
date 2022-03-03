@@ -1,5 +1,6 @@
 package com.netcompany.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,9 +26,9 @@ public class Book {
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
+    @JsonIgnore
     @ManyToOne()
     private Author author;
-
 
 
     public Book(String name, Genre genre, Author author) {
